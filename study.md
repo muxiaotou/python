@@ -107,5 +107,31 @@
         上面generator当中，yield b，b为每次generator的返回值，
     12.交叉赋值
         a , b = b , a
-    13.函数
+    13.函数式编程
+    
+    
+    一些包
+    1.print
+        python 2: print >>sys.stderr, "This is a error"
+        python 3: print("This is a error", file=sys.stderr)
+    2.getopt.getopt(args, shortopts, longopts=[]) c风格的命令参数解释器
+        1）短命令后有":"表示带参数，长命令后有"="表示带参数
+        2）getopt函数返回两个list，opts和args，opts为分析出的格式信息，args为不属于格式信息的剩余的命令行参数，opts是一个两元组的列表。每个元素为：(选项串,附加参数)。如果没有附加参数则为空串
+        #!/usr/bin/env python
+        
+        import getopt,sys
+        
+        try:
+            opts, args = getopt.getopt(sys.argv[1:],'ho:',["help", "output="])
+            print opts
+            print args
+        except getopt.GetoptError:
+            print "An error has occurred"
+            sys.exit(1)
+            
+        python chenli.py -h -o file --help --output=out file1 file2
+        [('-h', ''), ('-o', 'file'), ('--help', ''), ('--output', 'out')]
+        ['file1', 'file2']
+        
+        
         
